@@ -18,4 +18,14 @@ class CustomButtonStyles {
         backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
         elevation: MaterialStateProperty.all<double>(0),
       );
+
+  static ButtonStyle get outlinePrimaryTL123 => ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.onPrimaryContainer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.h),
+        ),
+        shadowColor: theme.colorScheme.primary,
+        elevation: 14,
+        textStyle: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+      );
 }
