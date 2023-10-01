@@ -1,3 +1,4 @@
+import 'package:ai_virtual_classroom/controller/signup_controller.dart';
 import 'package:ai_virtual_classroom/core/app_exports.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';
@@ -13,6 +14,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final signUpController = Get.put(SignUpContrroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
+                      controller: signUpController.nameController,
                       hintText: 'Your name',
                     ),
                     const SizedBox(height: 20),
@@ -51,6 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
+                      controller: signUpController.emailController,
                       hintText: 'name@example.com',
                     ),
                     const SizedBox(height: 20),
@@ -63,9 +67,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
-                      hintText: '***************',
-                      obscureText: true,
-                      suffix: const Icon(Icons.visibility_off),
+                      controller: signUpController.passwordController,
+                      hintText: 'Must be 8',
+                      obscureText: signUpController.obscurePassword.value,
+                      suffix: Obx(
+                        () => IconButton(
+                          onPressed: () {
+                            setState(() {
+                              signUpController.obscurePassword.value =
+                                  !signUpController.obscurePassword.value;
+                            });
+                          },
+                          icon: Icon(
+                            signUpController.obscurePassword.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -77,9 +97,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 10.h),
                     CustomTextFormField(
-                      hintText: '***************',
-                      obscureText: true,
-                      suffix: const Icon(Icons.visibility_off),
+                      controller: signUpController.confirmController,
+                      hintText: 'Must match',
+                      obscureText:
+                          signUpController.obscureConfirmPassword.value,
+                      suffix: Obx(
+                        () => IconButton(
+                          onPressed: () {
+                            setState(() {
+                              signUpController.obscureConfirmPassword.value =
+                                  !signUpController
+                                      .obscureConfirmPassword.value;
+                            });
+                          },
+                          icon: Icon(
+                            signUpController.obscureConfirmPassword.value
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Padding(
@@ -90,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       child: CustomElevatedButton(
                         text: 'Sign Up',
+                        onTap: () => signUpController.validate(),
                       ),
                     ),
                   ],

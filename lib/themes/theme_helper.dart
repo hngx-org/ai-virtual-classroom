@@ -137,16 +137,16 @@ class ColorSchemes {
     // Error colors
     error: Color(0XFF263238),
     errorContainer: Color(0XFF96A7D0),
-    onError: Color(0XFFFFFFFF),
+    // onError: Color(0XFFFFFFFF),
     onErrorContainer: Color(0XFF191D88),
 
     // On colors(text colors)
     onBackground: Color(0XFFFFC436),
-    onInverseSurface: Color(0XFFFFFFFF),
+    // onInverseSurface: Color(0XFFFFFFFF),
     onPrimary: Color(0XFF263238),
     onPrimaryContainer: Color(0XFFFFC436),
     //Icon
-    onSecondary: Color.fromARGB(255, 249, 248, 245),
+    //onSecondary: Color.fromARGB(255, 249, 248, 245),
     onSecondaryContainer: Color(0XFF191D88),
     onTertiary: Color(0XFFFFC436),
     onTertiaryContainer: Color(0XFF191D88),
