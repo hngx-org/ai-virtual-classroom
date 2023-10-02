@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import '../core/app_exports.dart';
+import '../core/app_export.dart';
+
+import 'ThemeHelper.dart';
 
 class AppDecoration {
   // Fill decorations
   static BoxDecoration get fillGray => BoxDecoration(
         color: appTheme.gray100,
       );
-  static BoxDecoration get fillOnInverseSurface => BoxDecoration(
-        color: theme.colorScheme.onInverseSurface,
+  static BoxDecoration get fillWhiteA => BoxDecoration(
+        color: appTheme.whiteA700,
       );
 }
 

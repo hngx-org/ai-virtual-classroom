@@ -1,10 +1,12 @@
-import 'package:ai_virtual_classroom/core/app_exports.dart';
+import 'package:get/get.dart';
+
+import '../app_export.dart';
+import 'pref_utils.dart';
 
 class InitialBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(PrefUtils());
-    //Get.put(ApiClient());
     Connectivity connectivity = Connectivity();
     Get.put(NetworkInfo(connectivity));
   }
