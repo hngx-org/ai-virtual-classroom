@@ -39,8 +39,8 @@ class SignInController extends GetxController {
       ProgressDialogUtils.hideProgressDialog();
       if (result != null) {
         var ss = PrefUtils();
-        final data = result['data']['name'];
-        print('Success Result: $result');
+        final data = result;
+        print('Success Result: ${result.name}');
         print('Success Result Name: $data');
         ss.setLogin(true);
         successMethod("User Logged In Successfully");
