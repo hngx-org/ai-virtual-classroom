@@ -1,11 +1,6 @@
-import 'package:get/get.dart';
-
-import '../core/utils/size_utils.dart';
-
 import '../core/app_export.dart';
 import 'package:flutter/material.dart';
 
-import '../themes/app_decoration.dart';
 import 'navigation_controller.dart';
 
 class AppNavigationScreen extends GetWidget<AppNavigationController> {
@@ -16,7 +11,7 @@ class AppNavigationScreen extends GetWidget<AppNavigationController> {
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.whiteA700,
+            backgroundColor: appTheme.gray100,
             body: SizedBox(
                 width: 375.h,
                 child: Column(children: [

@@ -1,4 +1,3 @@
-import 'package:ai_virtual_classroom/core/app_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:hng_authentication/authentication.dart';
 

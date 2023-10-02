@@ -1,32 +1,23 @@
+import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
 import 'package:ai_virtual_classroom/screens/welcome_screen.dart';
-import 'package:ai_virtual_classroom/themes/theme_helper.dart';
-import 'package:get/get.dart';
-
-import '../../core/utils/image_constants.dart';
-import '../../core/utils/size_utils.dart';
-
-//import '../../widgets/app_custom_buttons.dart';
-import '../../widgets/app_custom_buttons.dart';
-import '../../widgets/custom_image_view.dart';
-import '../../widgets/custom_text_style.dart';
-
+import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'onboarding_screen_controller.dart';
+import '../../core/app_export.dart';
 
-class OnBoardingScreen extends GetView<OnBoardingController> {
-  const OnBoardingScreen({Key? key})
-      : super(
-          key: key,
-        );
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
     return Scaffold(
-      backgroundColor: appTheme.gray100,
       body: SizedBox(
         width: 411.h,
         child: SafeArea(
@@ -55,17 +46,17 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
                               height: 150.v,
                               width: 254.h,
                               child: Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'AI',
-                                      style: CustomTextStyles.exoOnPrimary,
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        'AI',
+                                        style: CustomTextStyles
+                                            .exoPrimaryContainer,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
+                                  ]),
                             ),
                           ),
                         ],
@@ -98,7 +89,7 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
               ),
               SizedBox(height: 19.v),
               CustomElevatedButton(
-                onTap: () => Get.offAll(const WelcomeScreen()),
+                // onTap: () => Get.offAll(const WelcomeScreen()),
                 width: 267.h,
                 text: 'Continue',
               ),

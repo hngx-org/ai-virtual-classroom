@@ -1,9 +1,7 @@
 import 'package:ai_virtual_classroom/controller/sign_controller.dart';
-import 'package:ai_virtual_classroom/core/app_exports.dart';
-import 'package:ai_virtual_classroom/screens/dashboard.dart';
+import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/screens/sign_up_screen.dart';
-import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';
-import 'package:ai_virtual_classroom/widgets/custom_text_form_field.dart';
+import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

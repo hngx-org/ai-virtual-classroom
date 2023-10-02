@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../app_exports.dart';
+import '../app_export.dart';
 
 // import 'package:intl/intl.dart';
 
