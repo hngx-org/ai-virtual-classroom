@@ -1,4 +1,4 @@
-import '../controller/submit_success_controller.dart';
+import 'package:ai_virtual_classroom/controllers/submit_success_controller.dart';
 import 'package:get/get.dart';
 
 /// A binding class for the SubmitSuccessScreen.

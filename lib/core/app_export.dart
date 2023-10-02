@@ -13,4 +13,4 @@ export '../themes/ThemeHelper.dart';
 export '../widgets/custom_image_view.dart';
 export 'package:get/get.dart';
 export '../widgets/app_custom_buttons.dart';
-// export '../core/utils/size_utils.dart';
+export '../core/utils/size_utils.dart';
