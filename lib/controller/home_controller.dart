@@ -15,9 +15,9 @@ class HomeController extends GetxController {
     dynamic result = ApiClient().chat(requestData: resp);
     ProgressDialogUtils.hideProgressDialog();
     if (result != null) {
-      final data = result['message'];
+      //final data = result['message'];
       print('Success Result: $result');
-      print('Success Result Name: $data');
+      // print('Success Result Name: $data');
     } else {
       errorMethod("An Error Occurred");
     }
