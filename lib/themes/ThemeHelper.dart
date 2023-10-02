@@ -1,10 +1,9 @@
-import 'package:ai_virtual_classroom/core/utils/pref_utils.dart';
-import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
-//import 'package:ai_virtual_classroom/themes/app_colors.dart';
-import 'package:ai_virtual_classroom/themes/app_theme.dart';
+//import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
+//import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../core/app_export.dart';
 
 /// Helper class for managing themes and colors.
 class ThemeHelper {
@@ -12,12 +11,12 @@ class ThemeHelper {
   final _appTheme = PrefUtils().getThemeData();
 
 // A map of custom color themes supported by the app
-  final Map<String, PrimaryColors> _supportedCustomColor = {
+  Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
 
 // A map of color schemes supported by the app
-  final Map<String, ColorScheme> _supportedColorScheme = {
+  Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
 
@@ -51,23 +50,15 @@ class ThemeHelper {
     var colorScheme =
         _supportedColorScheme[_appTheme] ?? ColorSchemes.primaryColorScheme;
     return ThemeData(
-      // useMaterial3: true,
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
-
       textTheme: TextThemes.textTheme(colorScheme),
-      scaffoldBackgroundColor: appTheme.gray100,
-      appBarTheme: AppBarTheme(
-        elevation: 1,
-        centerTitle: true,
-        backgroundColor: AppTheme().white,
-        iconTheme: IconThemeData(color: AppTheme().black200),
-      ),
+      scaffoldBackgroundColor: colorScheme.onPrimary,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.primaryContainer,
+          backgroundColor: colorScheme.onPrimary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.h),
+            borderRadius: BorderRadius.circular(12.0),
           ),
           shadowColor: colorScheme.primary,
           elevation: 14,
@@ -91,82 +82,68 @@ class ThemeHelper {
 /// Class containing the supported text theme styles.
 class TextThemes {
   static TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
-        bodyLarge: TextStyle(
-          //color: colorScheme.primaryContainer,
-          color: appTheme.blueGray800,
-          fontSize: 18.fSize,
-          fontFamily: 'ExoRoman',
-          fontWeight: FontWeight.w400,
-        ),
-        bodyMedium: TextStyle(
-          color: appTheme.blueGray800,
-          fontSize: 14.fSize,
-          fontFamily: 'RobotoRoman',
-          fontWeight: FontWeight.w300,
-        ),
         titleLarge: TextStyle(
-          color: colorScheme.onError,
-          fontSize: 20.fSize,
-          fontFamily: 'ExoRoman',
+          color: appTheme.whiteA700,
+          fontSize: 20,
+          fontFamily: 'Exo',
           fontWeight: FontWeight.w600,
         ),
         titleMedium: TextStyle(
-          color: colorScheme.secondaryContainer,
-          fontSize: 16.fSize,
-          fontFamily: 'ExoRoman',
-          fontWeight: FontWeight.w500,
+          color: colorScheme.onPrimary,
+          fontSize: 19,
+          fontFamily: 'Exo',
+          fontWeight: FontWeight.w600,
         ),
       );
 }
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static const primaryColorScheme = ColorScheme.light(
+  static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFF190000),
+    primary: Color(0X19000000),
     primaryContainer: Color(0XFF191D88),
     secondary: Color(0XFF191D88),
-    secondaryContainer: Color(0XFF636D77),
+    secondaryContainer: Color(0XFF96A7D0),
     tertiary: Color(0XFF191D88),
-    tertiaryContainer: Color(0XFF636D77),
+    tertiaryContainer: Color(0XFF96A7D0),
 
     // Background colors
     background: Color(0XFF191D88),
 
     // Surface colors
     surface: Color(0XFF191D88),
-    surfaceTint: Color(0XFF263238),
-    surfaceVariant: Color(0XFF636D77),
+    surfaceTint: Color(0XFF191D88),
+    surfaceVariant: Color(0XFF96A7D0),
 
     // Error colors
-    error: Color(0XFF263238),
+    error: Color(0XFF191D88),
     errorContainer: Color(0XFF96A7D0),
-    // onError: Color(0XFFFFFFFF),
+    onError: Color(0X19000000),
     onErrorContainer: Color(0XFF191D88),
 
     // On colors(text colors)
-    onBackground: Color(0XFFFFC436),
-    // onInverseSurface: Color(0XFFFFFFFF),
-    onPrimary: Color(0XFF263238),
-    onPrimaryContainer: Color(0XFFFFC436),
-    //Icon
-    //onSecondary: Color.fromARGB(255, 249, 248, 245),
+    onBackground: Color(0X19000000),
+    onInverseSurface: Color(0X19000000),
+    onPrimary: Color(0XFF191D88),
+    onPrimaryContainer: Color(0X19000000),
+    onSecondary: Color(0X19000000),
     onSecondaryContainer: Color(0XFF191D88),
-    onTertiary: Color(0XFFFFC436),
+    onTertiary: Color(0X19000000),
     onTertiaryContainer: Color(0XFF191D88),
 
     // Other colors
-    outline: Color(0XFF263238),
+    outline: Color(0XFF191D88),
     outlineVariant: Color(0XFF191D88),
     scrim: Color(0XFF191D88),
-    shadow: Color(0XFF263238),
+    shadow: Color(0XFF191D88),
 
     // Inverse colors
     inversePrimary: Color(0XFF191D88),
-    inverseSurface: Color(0XFF263238),
+    inverseSurface: Color(0XFF191D88),
 
     // Pending colors
-    onSurface: Color(0XFFFFC436),
+    onSurface: Color(0X19000000),
     onSurfaceVariant: Color(0XFF191D88),
   );
 }
@@ -174,12 +151,13 @@ class ColorSchemes {
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
   // BlueGray
-  Color get blueGray400 => const Color(0XFF888888);
-  Color get blueGray700 => const Color(0XFF455A64);
-  Color get blueGray800 => const Color(0XFF364356);
+  Color get blueGray400 => Color(0XFF888888);
 
   // Gray
-  Color get gray100 => const Color(0XFFF4F5F9);
+  Color get gray100 => Color(0XFFF4F5F9);
+
+  // White
+  Color get whiteA700 => Color(0XFFFFFFFF);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();
