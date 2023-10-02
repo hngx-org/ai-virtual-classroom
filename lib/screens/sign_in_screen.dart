@@ -143,7 +143,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     child: CustomElevatedButton(
                       onTap: () async {
-                        // Get.to(() => Dashboard());
+                        Get.to(() => Dashboard());
                         //await signInController.validate();
                       },
                       text: 'Sign In',
