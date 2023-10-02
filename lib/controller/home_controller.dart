@@ -4,6 +4,8 @@ import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import 'package:ai_virtual_classroom/services/api_client.dart';
 import 'package:flutter/material.dart';
 
+import '../core/app_export.dart';
+
 class HomeController extends GetxController {
   final topicController = TextEditingController();
   final essayController = TextEditingController();

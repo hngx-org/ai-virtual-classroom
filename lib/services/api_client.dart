@@ -1,5 +1,6 @@
 import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 
+import '../core/app_export.dart';
 import '../core/app_exports.dart';
 
 class ApiClient extends GetConnect {

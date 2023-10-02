@@ -1,5 +1,7 @@
 import 'package:ai_virtual_classroom/controller/signup_controller.dart';
+import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/core/app_exports.dart';
+import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
 import 'package:ai_virtual_classroom/screens/dashboard.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';

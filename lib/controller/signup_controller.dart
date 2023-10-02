@@ -7,6 +7,8 @@ import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import 'package:ai_virtual_classroom/services/api_client.dart';
 import 'package:flutter/material.dart';
 
+import '../core/app_export.dart';
+
 class SignUpContrroller extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();

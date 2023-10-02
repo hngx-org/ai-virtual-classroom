@@ -1,9 +1,10 @@
-import 'package:ai_virtual_classroom/core/app_exports.dart';
+import 'package:ai_virtual_classroom/core/app_export.dart';
+import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
+import 'package:ai_virtual_classroom/themes/app_theme.dart';
+import 'package:flutter/material.dart';
+
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/screens/sign_up_screen.dart';
-import 'package:ai_virtual_classroom/themes/app_colors.dart';
-import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';
-import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
