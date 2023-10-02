@@ -1,5 +1,6 @@
 import 'package:ai_virtual_classroom/controller/signup_controller.dart';
 import 'package:ai_virtual_classroom/core/app_exports.dart';
+import 'package:ai_virtual_classroom/screens/dashboard.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';
 import 'package:ai_virtual_classroom/widgets/custom_text_form_field.dart';
@@ -128,7 +129,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       child: CustomElevatedButton(
                         text: 'Sign Up',
-                        onTap: () => signUpController.validate(),
+                        onTap: () => Get.to(() => Dashboard()),
+                        //onTap: () => signUpController.validate(),
                       ),
                     ),
                   ],

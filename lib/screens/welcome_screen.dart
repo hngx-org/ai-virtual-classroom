@@ -43,24 +43,28 @@ class WelcomeScreen extends StatelessWidget {
             //SizedBox(height: 40.v),
             const Spacer(),
             CustomElevatedButton(
-              text: 'Sign In',
-              onTap: () => Get.offAll(
-                () => const SignInScreen(),
-              ),
-            ),
+                text: 'Sign In',
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  Get.offAll(
+                    () => const SignInScreen(),
+                  );
+                }),
             SizedBox(height: 20.v),
             CustomElevatedButton(
-              text: 'Sign Up',
-              buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
-              buttonTextStyle: TextStyle(
-                  fontFamily: 'ExoRoman',
-                  color: AppTheme().primaryColor,
-                  fontWeight: FontWeight.w300,
-                  fontSize: 20.fSize),
-              onTap: () => Get.offAll(
-                const SignUpScreen(),
-              ),
-            ),
+                text: 'Sign Up',
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
+                buttonTextStyle: TextStyle(
+                    fontFamily: 'ExoRoman',
+                    color: AppTheme().primaryColor,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20.fSize),
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  Get.offAll(
+                    const SignUpScreen(),
+                  );
+                }),
           ],
         ),
       ),

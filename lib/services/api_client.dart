@@ -3,7 +3,7 @@ import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import '../core/app_exports.dart';
 
 class ApiClient extends GetConnect {
-  var url = "https://spitfire-openai.onrender.com";
+  var url = "https://spitfire-interractions.onrender.com";
   //final box = GetStorage();
 
   @override
@@ -70,6 +70,34 @@ class ApiClient extends GetConnect {
       await isNetworkConnected();
       Response response = await httpClient.post(
         '$url/api/auth/register',
+        headers: headers,
+        body: requestData,
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (_isSuccessCall(response)) {
+        return response.body;
+      } else {
+        throw response.body != null ? response.body : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(
+        error,
+        stackTrace: stackTrace,
+      );
+      rethrow;
+    }
+  }
+
+  Future<dynamic> chat({
+    Map<String, String> headers = const {},
+    Map requestData = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      Response response = await httpClient.post(
+        '$url/api/chat/completions',
         headers: headers,
         body: requestData,
       );

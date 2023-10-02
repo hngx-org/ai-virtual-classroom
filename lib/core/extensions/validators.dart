@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../app_exports.dart';
 
@@ -38,7 +39,7 @@ extension ExString on String {
   }
 }
 
-// extension DateXtension on DateTime {
-//   String get formatToDate => DateFormat('MMM d, yyyy').format(this);
-//   String get formatToTime => DateFormat.jm().format(this);
-// }
+extension DateXtension on DateTime {
+  String get formatToDate => DateFormat('MMM d, yyyy').format(this);
+  String get formatToTime => DateFormat.jm().format(this);
+}
