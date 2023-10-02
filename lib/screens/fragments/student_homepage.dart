@@ -101,7 +101,7 @@ class StudentHomePage extends StatelessWidget {
             CustomElevatedButton(
               text: "Submit",
               margin: EdgeInsets.symmetric(horizontal: 40.h),
-              onTap: () => homeController.submitEassy(),
+              //onTap: () => homeController.submitEassy(),
             )
           ],
         ),
