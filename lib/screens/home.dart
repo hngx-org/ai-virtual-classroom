@@ -49,7 +49,124 @@ class _HomePageState extends State<HomePage> {
         title: Text("Submit Your Essay!"),
       ),
       drawer: Drawer(
-        child: ListView(),
+        child: Column(
+          children: [
+            Container(
+              height: 100,
+              color: const Color(0xFF191D88),
+              alignment: Alignment.center,
+              child: Text(
+                'AI Virtual Classroom',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: const Color(0xFF364356),
+                size: 24,
+              ),
+              title: Text(
+                'Home',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: const Color(0xFF364356),
+                ),
+              ),
+              onTap: () {
+                // Handles Home item tap.
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.payment,
+                color: const Color(0xFF364356),
+                size: 24,
+              ),
+              title: Text(
+                'Payments',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: const Color(0xFF364356),
+                ),
+              ),
+              onTap: () {
+                // Handles Payments item tap.
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.assignment,
+                color: const Color(0xFF364356),
+                size: 24,
+              ),
+              title: Text(
+                'Essay Results',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: const Color(0xFF364356),
+                ),
+              ),
+              onTap: () {
+                // Handles Essay Results item tap.
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.notifications,
+                color: const Color(0xFF364356),
+                size: 24,
+              ),
+              title: Text(
+                'Notifications',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: const Color(0xFF364356),
+                ),
+              ),
+              onTap: () {
+                // Handles Notifications item tap.
+              },
+            ),
+            Spacer(),
+            CustomElevatedButton(
+                width: 200,
+                margin: EdgeInsets.only(bottom: 20),
+                text: 'Logout',
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
+                buttonTextStyle: TextStyle(
+                    fontFamily: 'ExoRoman',
+                    color: AppTheme().primaryColor,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20.fSize),
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  authCrtl.logout();
+                  logoutCtr.logout();
+                  Get.offAll(() => const SignInScreen());
+                }),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.logout,
+            //     color: const Color(0xFF364356),
+            //     size: 24,
+            //   ),
+            //   title: Text(
+            //     'Logout',
+            //     style: TextStyle(
+            //       fontSize: 16,
+            //       color: const Color(0xFF364356),
+            //     ),
+            //   ),
+            //   onTap: () {
+            //     // Handles Logout item tap.
+            //   },
+            // ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -145,13 +262,13 @@ class _HomePageState extends State<HomePage> {
                 margin: EdgeInsets.symmetric(horizontal: 40.h),
                 onTap: () => homeController.submitEassy(),
               ),
-              TextButton(
-                  onPressed: () {
-                    authCrtl.logout();
-                    logoutCtr.logout();
-                    Get.offAll(() => const SignInScreen());
-                  },
-                  child: const Text("Logout"))
+              // TextButton(
+              //     onPressed: () {
+              //       authCrtl.logout();
+              //       logoutCtr.logout();
+              //       Get.offAll(() => const SignInScreen());
+              //     },
+              //     child: const Text("Logout"))
             ],
           ),
         ),
