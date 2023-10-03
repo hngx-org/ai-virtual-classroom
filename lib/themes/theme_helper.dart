@@ -174,12 +174,24 @@ class ColorSchemes {
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
   // BlueGray
-  Color get blueGray400 => const Color(0XFF888888);
-  Color get blueGray700 => const Color(0XFF455A64);
-  Color get blueGray800 => const Color(0XFF364356);
+  Color get blueGray400 => Color(0XFF888888);
+  Color get blueGray700 => Color(0XFF455A64);
+  Color get blueGray800 => Color(0XFF364356);
+  Color get blueGray900 => Color(0XFF263238);
 
   // Gray
-  Color get gray100 => const Color(0XFFF4F5F9);
+  Color get gray100 => Color(0XFFF4F5F9);
+  Color get gray300 => Color(0XFFE4E4E4);
+  Color get gray400 => Color(0XFFB0B0B0);
+
+  // Indigo
+  Color get indigo900 => Color(0XFF191D88);
+
+  // White
+  Color get whiteA700 => Color(0XFFFFFFFF);
+
+  // Yellow
+  Color get yellow700 => Color(0XFFFFC436);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();
