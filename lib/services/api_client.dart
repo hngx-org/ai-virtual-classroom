@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 
 import '../core/app_export.dart';
@@ -100,10 +102,15 @@ class ApiClient extends GetConnect {
         '$url/api/chat/completions',
         headers: headers,
         body: requestData,
+        contentType: 'application/json',
       );
+      print("------${response.body}-------");
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return response.body;
+        // } else if (response.statusCode == 401) {
+        //   print("Error ${response.statusCode}");
+        //   return response.statusCode ;
       } else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }

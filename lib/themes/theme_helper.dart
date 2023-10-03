@@ -5,7 +5,6 @@ import 'package:ai_virtual_classroom/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // The current app theme
@@ -57,10 +56,11 @@ class ThemeHelper {
 
       textTheme: TextThemes.textTheme(colorScheme),
       scaffoldBackgroundColor: appTheme.gray100,
+      fontFamily: 'ExoRoman',
       appBarTheme: AppBarTheme(
-        elevation: 1,
+        elevation: 0,
         centerTitle: true,
-        backgroundColor: AppTheme().white,
+        backgroundColor: appTheme.gray100,
         iconTheme: IconThemeData(color: AppTheme().black200),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -100,8 +100,8 @@ class TextThemes {
         ),
         bodyMedium: TextStyle(
           color: appTheme.blueGray800,
-          fontSize: 14.fSize,
-          fontFamily: 'RobotoRoman',
+          fontSize: 16.fSize,
+          fontFamily: 'ExoRoman',
           fontWeight: FontWeight.w300,
         ),
         titleLarge: TextStyle(

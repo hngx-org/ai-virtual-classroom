@@ -1,5 +1,3 @@
-import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
-import 'package:ai_virtual_classroom/screens/welcome_screen.dart';
 import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
