@@ -1,11 +1,10 @@
+import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import 'core/utils/initalbinding.dart';
 import 'routes/app_routes.dart';
-
-import 'themes/ThemeHelper.dart';
 
 void main() {
   runApp(MyApp());
