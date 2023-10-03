@@ -1,46 +1,8 @@
-import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
-import 'package:ai_virtual_classroom/themes/theme_helper.dart';
+import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
+
+import '../core/app_export.dart';
+
 import 'package:flutter/material.dart';
-
-class BaseButton extends StatelessWidget {
-  BaseButton({
-    Key? key,
-    required this.text,
-    this.onTap,
-    this.buttonStyle,
-    this.buttonTextStyle,
-    this.isDisabled,
-    this.height,
-    this.width,
-    this.margin,
-    this.alignment,
-  }) : super(
-          key: key,
-        );
-
-  final String text;
-
-  final VoidCallback? onTap;
-
-  final ButtonStyle? buttonStyle;
-
-  final TextStyle? buttonTextStyle;
-
-  final bool? isDisabled;
-
-  final double? height;
-
-  final double? width;
-
-  final EdgeInsets? margin;
-
-  final Alignment? alignment;
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox.shrink();
-  }
-}
 
 class CustomElevatedButton extends BaseButton {
   CustomElevatedButton({
@@ -86,8 +48,8 @@ class CustomElevatedButton extends BaseButton {
   }
 
   Widget get buildElevatedButtonWidget => Container(
-        height: this.height ?? 61.v,
-        width: this.width ?? double.maxFinite,
+        height: height ?? 61.v,
+        width: width ?? double.maxFinite,
         margin: margin,
         decoration: decoration,
         child: ElevatedButton(

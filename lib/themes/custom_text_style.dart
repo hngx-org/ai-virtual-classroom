@@ -1,4 +1,3 @@
-import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
 import '../core/app_export.dart';
 
@@ -102,7 +101,7 @@ extension on TextStyle {
 
   TextStyle get exo {
     return copyWith(
-      fontFamily: 'ExoRoman',
+      fontFamily: 'Exo',
     );
   }
 

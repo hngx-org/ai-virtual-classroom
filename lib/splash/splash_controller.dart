@@ -1,6 +1,5 @@
 import 'package:ai_virtual_classroom/core/app_export.dart';
-
-import '../models/splash_model.dart';
+import 'package:ai_virtual_classroom/models/splash_model.dart';
 
 class SplashController extends GetxController {
   Rx<SplashModel> splashModelObj = SplashModel().obs;
