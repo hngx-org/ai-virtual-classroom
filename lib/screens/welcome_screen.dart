@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(height: 20.v),
             CustomElevatedButton(
                 text: 'Sign Up',
-                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
                 buttonTextStyle: TextStyle(
                     fontFamily: 'ExoRoman',
                     color: AppTheme().primaryColor,
