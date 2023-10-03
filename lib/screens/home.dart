@@ -4,6 +4,7 @@ import 'package:ai_virtual_classroom/controller/logout_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/core/utils/utlis.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
+import 'package:ai_virtual_classroom/screens/submit_success/submit_success_screen.dart';
 import 'package:ai_virtual_classroom/themes/app_theme.dart';
 import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 
@@ -258,10 +259,12 @@ class _HomePageState extends State<HomePage> {
               const Text("You have 3 free trials left"),
               SizedBox(height: 20.v),
               CustomElevatedButton(
-                text: "Submit",
-                margin: EdgeInsets.symmetric(horizontal: 40.h),
-                onTap: () => homeController.submitEassy(),
-              ),
+                  text: "Submit",
+                  margin: EdgeInsets.symmetric(horizontal: 40.h),
+                  onTap: () {
+                    homeController.submitEassy();
+                    ;
+                  }),
               // TextButton(
               //     onPressed: () {
               //       authCrtl.logout();

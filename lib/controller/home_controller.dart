@@ -5,6 +5,7 @@ import 'package:ai_virtual_classroom/services/api_client.dart';
 import 'package:flutter/material.dart';
 
 import '../core/app_export.dart';
+import '../screens/submit_success/submit_success_screen.dart';
 
 class HomeController extends GetxController {
   final topicController = TextEditingController();
@@ -38,6 +39,7 @@ class HomeController extends GetxController {
         print(header);
         print('Success Result: ${result}');
         // print('Success Result Name: $data');
+        Get.to(() => const SubmitSuccessScreen());
       } else {
         ProgressDialogUtils.hideProgressDialog();
         errorMethod("An Error Occurred");
