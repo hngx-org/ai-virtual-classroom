@@ -108,9 +108,9 @@ class ApiClient extends GetConnect {
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return response.body;
-        // } else if (response.statusCode == 401) {
-        //   print("Error ${response.statusCode}");
-        //   return response.statusCode ;
+      } else if (response.statusCode == 401) {
+        print("Error ${response.statusCode}");
+        return response.statusCode;
       } else {
         throw response.body != null ? response.body : 'Something Went Wrong!';
       }
