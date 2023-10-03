@@ -1,3 +1,4 @@
+import 'package:ai_virtual_classroom/controller/auth_controller.dart';
 import 'package:ai_virtual_classroom/controller/sign_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/screens/sign_up_screen.dart';
@@ -14,6 +15,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 final signInController = Get.put(SignInController());
+final AuthController authController = Get.find();
 bool obscurePassword = true;
 
 class _SignInScreenState extends State<SignInScreen> {
@@ -98,6 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       onTap: () async {
                         //  Get.to(() => Dashboard());
                         await signInController.validate();
+                        await authController.login();
                       },
                       text: 'Sign In',
                     ),

@@ -1,6 +1,8 @@
 import 'package:ai_virtual_classroom/controllers/submit_success_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
-import 'package:ai_virtual_classroom/widgets/custom_elevated_button.dart';
+
+import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
+
 import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
@@ -44,7 +46,8 @@ class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
                   right: 10.h,
                 ),
                 child: Text(
-                  "The Result is ready! \nOur AI has graded it with a feedback and has some learning books recommendation for you to peruse for the subject topic".tr,
+                  "The Result is ready! \nOur AI has graded it with a feedback and has some learning books recommendation for you to peruse for the subject topic"
+                      .tr,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
@@ -54,7 +57,7 @@ class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
               CustomElevatedButton(
                   text: "Check Result".tr,
                   margin: EdgeInsets.fromLTRB(28.h, 27.v, 30.h, 5.v),
-                  buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
+                  buttonStyle: CustomButtonStyles.outlinePrimaryTL12,
                   buttonTextStyle: CustomTextStyles.titleLargeIndigo900,
                   onTap: () {
                     ;

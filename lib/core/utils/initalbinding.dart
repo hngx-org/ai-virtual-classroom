@@ -1,3 +1,5 @@
+import 'package:ai_virtual_classroom/controller/auth_controller.dart';
+
 import '../app_export.dart';
 
 class InitialBindings extends Bindings {
@@ -6,5 +8,6 @@ class InitialBindings extends Bindings {
     Get.put(PrefUtils());
     Connectivity connectivity = Connectivity();
     Get.put(NetworkInfo(connectivity));
+    Get.lazyPut(() => AuthController());
   }
 }

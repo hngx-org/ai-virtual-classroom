@@ -27,7 +27,7 @@ class AppRoutes {
     ),
     GetPage(
       name: onBoardingScreen,
-      page: () => OnBoardingScreen(),
+      page: () => const OnBoardingScreen(),
       bindings: [
         OnBoardingBinding(),
       ],

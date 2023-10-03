@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+
 import '../../core/app_export.dart';
+
 
 /// Helper class for managing themes and colors.
 class ThemeHelper {
@@ -50,7 +52,16 @@ class ThemeHelper {
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
       textTheme: TextThemes.textTheme(colorScheme),
-      scaffoldBackgroundColor: colorScheme.onError,
+
+      scaffoldBackgroundColor: appTheme.gray100,
+      fontFamily: 'ExoRoman',
+      appBarTheme: AppBarTheme(
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: appTheme.gray100,
+        iconTheme: IconThemeData(color: AppTheme().black200),
+      ),
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: appTheme.indigo900,
@@ -109,8 +120,10 @@ class TextThemes {
         ),
         bodyMedium: TextStyle(
           color: appTheme.blueGray800,
-          fontSize: 14.fSize,
-          fontFamily: 'Roboto',
+
+          fontSize: 16.fSize,
+          fontFamily: 'ExoRoman',
+
           fontWeight: FontWeight.w300,
         ),
         bodySmall: TextStyle(
