@@ -61,7 +61,7 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
                                     alignment: Alignment.topCenter,
                                     child: Text(
                                       'AI',
-                                      style: CustomTextStyles.exoOnPrimary,
+                                      style: CustomTextStyles.exoPrimaryContainer,
                                     ),
                                   ),
                                 ],

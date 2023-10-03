@@ -14,8 +14,25 @@ class ImageConstant {
   // Sign up images
   static String imgWebinarpana1 = '$imagePath/img_webinarpana1.svg';
 
+  // Submit success images
+  static String imgSuccessiconcomponent =
+      '$imagePath/img_successiconcomponent.svg';
+
+  // Essay Result images
+  static String imgCopy = '$imagePath/img_copy.png';
+
   // Common images
   static String imgEye = '$imagePath/img_eye.svg';
+
+  static String imgSignal = '$imagePath/img_signal.svg';
+
+  static String imgOffer = '$imagePath/img_offer.svg';
+
+  static String imgCamera = '$imagePath/img_camera.svg';
+
+  static String imgFimenu = '$imagePath/img_fimenu.svg';
+
+  static String imgProfile = '$imagePath/img_profile.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 }
