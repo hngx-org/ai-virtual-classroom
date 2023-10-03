@@ -1,7 +1,5 @@
+import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
-import '../core/app_export.dart';
-
-import 'ThemeHelper.dart';
 
 class AppDecoration {
   // Fill decorations
@@ -9,7 +7,7 @@ class AppDecoration {
         color: appTheme.gray100,
       );
   static BoxDecoration get fillWhiteA => BoxDecoration(
-        color: appTheme.whiteA700,
+        color: appTheme.gray100,
       );
 }
 

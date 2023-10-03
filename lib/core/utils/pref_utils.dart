@@ -31,4 +31,14 @@ class PrefUtils {
       return 'primary';
     }
   }
+
+  Future<void> setLogin(value) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLoggedIn", value);
+  }
+
+  Future<bool> getLogin() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getBool("isLoggedIn") ?? false;
+  }
 }
