@@ -2,7 +2,6 @@ import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/themes/app_theme.dart';
 import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 import 'package:flutter/material.dart';
-
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/screens/sign_up_screen.dart';
 
