@@ -1,11 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
-import 'package:ai_virtual_classroom/core/app_exports.dart';
 import 'package:ai_virtual_classroom/core/extensions/validators.dart';
 import 'package:ai_virtual_classroom/core/global/global.dart';
 import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
-import 'package:ai_virtual_classroom/services/api_client.dart';
+import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../core/app_export.dart';
 
 class SignUpContrroller extends GetxController {
   final emailController = TextEditingController();
@@ -36,7 +38,7 @@ class SignUpContrroller extends GetxController {
   }
 
   Future<void> signUp() async {
-    print("Here");
+    print("Here Signup");
     ProgressDialogUtils.showProgressDialog();
     try {
       final name = nameController.text.trim();
@@ -45,13 +47,17 @@ class SignUpContrroller extends GetxController {
       final result = await authRepository.signUp(name, email, password);
       ProgressDialogUtils.hideProgressDialog();
       if (result != null) {
-        // final data = result.body;
+        // print('Success : ${result.name}');
         print('Success Result: $result');
+
         successMethod("Account Created Successfully");
+        Get.offAll(() => const SignInScreen());
         nameController.clear();
         emailController.clear();
         passwordController.clear();
+        confirmController.clear();
       } else {
+        ProgressDialogUtils.hideProgressDialog();
         errorMethod("An Error Occurred");
       }
     } catch (error) {

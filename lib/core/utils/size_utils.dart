@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 MediaQueryData mediaQueryData = MediaQueryData.fromWindow(ui.window);
 
-// These are the Viewport values of the Design.
-// These are used in the code as a reference to create UI Responsively.
-const num DESIGN_WIDTH = 414;
-const num DESIGN_HEIGHT = 823;
-const num DESIGN_STATUS_BAR = 0;
+// These are the Viewport values of your Figma Design.
+// These are used in the code as a reference to create your UI Responsively.
+const num FIGMA_DESIGN_WIDTH = 414;
+const num FIGMA_DESIGN_HEIGHT = 823;
+const num FIGMA_DESIGN_STATUS_BAR = 0;
 
 ///This extension is used to set padding/margin (for the top and bottom side) & height of the screen or widget according to the Viewport height.
 extension ResponsiveExtension on num {
@@ -27,11 +27,11 @@ extension ResponsiveExtension on num {
   }
 
   ///This method is used to set padding/margin (for the left and Right side) & width of the screen or widget according to the Viewport width.
-  double get h => ((this * _width) / DESIGN_WIDTH);
+  double get h => ((this * _width) / FIGMA_DESIGN_WIDTH);
 
   ///This method is used to set padding/margin (for the top and bottom side) & height of the screen or widget according to the Viewport height.
   double get v =>
-      (this * _height) / (DESIGN_HEIGHT - DESIGN_STATUS_BAR);
+      (this * _height) / (FIGMA_DESIGN_HEIGHT - FIGMA_DESIGN_STATUS_BAR);
 
   ///This method is used to set smallest px in image height and width
   double get adaptSize {

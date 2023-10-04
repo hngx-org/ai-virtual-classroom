@@ -1,19 +1,21 @@
-import 'package:ai_virtual_classroom/themes/app_colors.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../core/app_exports.dart';
+
+import '../../core/app_export.dart';
+
 
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // The current app theme
-  final _appTheme = PrefUtils().getThemeData();
+  var _appTheme = PrefUtils().getThemeData();
 
 // A map of custom color themes supported by the app
-  final Map<String, PrimaryColors> _supportedCustomColor = {
+  Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
 
 // A map of color schemes supported by the app
-  final Map<String, ColorScheme> _supportedColorScheme = {
+  Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
 
@@ -47,21 +49,22 @@ class ThemeHelper {
     var colorScheme =
         _supportedColorScheme[_appTheme] ?? ColorSchemes.primaryColorScheme;
     return ThemeData(
-      // useMaterial3: true,
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
-
       textTheme: TextThemes.textTheme(colorScheme),
+
       scaffoldBackgroundColor: appTheme.gray100,
+      fontFamily: 'ExoRoman',
       appBarTheme: AppBarTheme(
-        elevation: 1,
+        elevation: 0,
         centerTitle: true,
-        backgroundColor: AppTheme().white,
+        backgroundColor: appTheme.gray100,
         iconTheme: IconThemeData(color: AppTheme().black200),
       ),
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.primaryContainer,
+          backgroundColor: appTheme.indigo900,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.h),
           ),
@@ -73,6 +76,28 @@ class ThemeHelper {
           ),
           padding: EdgeInsets.zero,
         ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: colorScheme.primary.withOpacity(0.2),
+            width: 1.h,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.h),
+          ),
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      dividerTheme: DividerThemeData(
+        thickness: 1,
+        space: 1,
+        color: appTheme.gray300,
       ),
     );
   }
@@ -88,28 +113,53 @@ class ThemeHelper {
 class TextThemes {
   static TextTheme textTheme(ColorScheme colorScheme) => TextTheme(
         bodyLarge: TextStyle(
-          //color: colorScheme.primaryContainer,
-          color: appTheme.blueGray800,
+          color: appTheme.indigo900,
           fontSize: 18.fSize,
-          fontFamily: 'ExoRoman',
+          fontFamily: 'Exo',
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
           color: appTheme.blueGray800,
-          fontSize: 14.fSize,
-          fontFamily: 'RobotoRoman',
+
+          fontSize: 16.fSize,
+          fontFamily: 'ExoRoman',
+
           fontWeight: FontWeight.w300,
         ),
+        bodySmall: TextStyle(
+          color: colorScheme.primary.withOpacity(0.87),
+          fontSize: 12.fSize,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+        ),
+        displayMedium: TextStyle(
+          color: appTheme.indigo900,
+          fontSize: 40.fSize,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w700,
+        ),
+        headlineSmall: TextStyle(
+          color: appTheme.whiteA700,
+          fontSize: 24.fSize,
+          fontFamily: 'Exo',
+          fontWeight: FontWeight.w500,
+        ),
         titleLarge: TextStyle(
-          color: colorScheme.onError,
+          color: appTheme.whiteA700,
           fontSize: 20.fSize,
-          fontFamily: 'ExoRoman',
+          fontFamily: 'Exo',
           fontWeight: FontWeight.w600,
         ),
         titleMedium: TextStyle(
           color: colorScheme.secondaryContainer,
           fontSize: 16.fSize,
-          fontFamily: 'ExoRoman',
+          fontFamily: 'Exo',
+          fontWeight: FontWeight.w500,
+        ),
+        titleSmall: TextStyle(
+          color: colorScheme.background.withOpacity(0.56),
+          fontSize: 14.fSize,
+          fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
         ),
       );
@@ -117,65 +167,76 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static const primaryColorScheme = ColorScheme.light(
+  static final primaryColorScheme = ColorScheme.light(
     // Primary colors
-    primary: Color(0XFF190000),
-    primaryContainer: Color(0XFF191D88),
-    secondary: Color(0XFF191D88),
+    primary: Color(0X19000000),
+    primaryContainer: Color(0XFF1C1B14),
+    secondary: Color(0XFF1C1B14),
     secondaryContainer: Color(0XFF636D77),
-    tertiary: Color(0XFF191D88),
+    tertiary: Color(0XFF1C1B14),
     tertiaryContainer: Color(0XFF636D77),
 
     // Background colors
-    background: Color(0XFF191D88),
+    background: Color(0XFF1C1B14),
 
     // Surface colors
-    surface: Color(0XFF191D88),
-    surfaceTint: Color(0XFF263238),
+    surface: Color(0XFF1C1B14),
+    surfaceTint: Color(0X192B2B2B),
     surfaceVariant: Color(0XFF636D77),
 
     // Error colors
-    error: Color(0XFF263238),
+    error: Color(0X192B2B2B),
     errorContainer: Color(0XFF96A7D0),
-    // onError: Color(0XFFFFFFFF),
-    onErrorContainer: Color(0XFF191D88),
+    onError: Color(0XFFF4F5F9),
+    onErrorContainer: Color(0XFF1C1B14),
 
     // On colors(text colors)
-    onBackground: Color(0XFFFFC436),
-    // onInverseSurface: Color(0XFFFFFFFF),
-    onPrimary: Color(0XFF263238),
-    onPrimaryContainer: Color(0XFFFFC436),
-    //Icon
-    //onSecondary: Color.fromARGB(255, 249, 248, 245),
-    onSecondaryContainer: Color(0XFF191D88),
-    onTertiary: Color(0XFFFFC436),
-    onTertiaryContainer: Color(0XFF191D88),
+    onBackground: Color(0XFF96A7D0),
+    onInverseSurface: Color(0XFFF4F5F9),
+    onPrimary: Color(0X192B2B2B),
+    onPrimaryContainer: Color(0XFF96A7D0),
+    onSecondary: Color(0XFF96A7D0),
+    onSecondaryContainer: Color(0XFF1C1B14),
+    onTertiary: Color(0XFF96A7D0),
+    onTertiaryContainer: Color(0XFF1C1B14),
 
     // Other colors
-    outline: Color(0XFF263238),
-    outlineVariant: Color(0XFF191D88),
-    scrim: Color(0XFF191D88),
-    shadow: Color(0XFF263238),
+    outline: Color(0X192B2B2B),
+    outlineVariant: Color(0XFF1C1B14),
+    scrim: Color(0XFF1C1B14),
+    shadow: Color(0X192B2B2B),
 
     // Inverse colors
-    inversePrimary: Color(0XFF191D88),
-    inverseSurface: Color(0XFF263238),
+    inversePrimary: Color(0XFF1C1B14),
+    inverseSurface: Color(0X192B2B2B),
 
     // Pending colors
-    onSurface: Color(0XFFFFC436),
-    onSurfaceVariant: Color(0XFF191D88),
+    onSurface: Color(0XFF96A7D0),
+    onSurfaceVariant: Color(0XFF1C1B14),
   );
 }
 
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
   // BlueGray
-  Color get blueGray400 => const Color(0XFF888888);
-  Color get blueGray700 => const Color(0XFF455A64);
-  Color get blueGray800 => const Color(0XFF364356);
+  Color get blueGray400 => Color(0XFF888888);
+  Color get blueGray700 => Color(0XFF455A64);
+  Color get blueGray800 => Color(0XFF364356);
+  Color get blueGray900 => Color(0XFF263238);
 
   // Gray
-  Color get gray100 => const Color(0XFFF4F5F9);
+  Color get gray100 => Color(0XFFF4F5F9);
+  Color get gray300 => Color(0XFFE4E4E4);
+  Color get gray400 => Color(0XFFB0B0B0);
+
+  // Indigo
+  Color get indigo900 => Color(0XFF191D88);
+
+  // White
+  Color get whiteA700 => Color(0XFFFFFFFF);
+
+  // Yellow
+  Color get yellow700 => Color(0XFFFFC436);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

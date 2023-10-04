@@ -1,5 +1,7 @@
+import 'package:ai_virtual_classroom/core/utils/size_utils.dart';
+import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
-import '../core/app_exports.dart';
+import '../core/app_export.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,
 /// categorized by different font families and weights.
@@ -21,7 +23,7 @@ class CustomTextStyles {
       ).exo;
   // Title text style
   static get titleLargeBluegray800 => theme.textTheme.titleLarge!.copyWith(
-        color: appTheme.blueGray800,
+        color: appTheme.blueGray400,
       );
   static get titleLargePrimaryContainer => theme.textTheme.titleLarge!.copyWith(
         color: theme.colorScheme.primaryContainer,
@@ -39,6 +41,60 @@ class CustomTextStyles {
         fontSize: 18.fSize,
         fontWeight: FontWeight.w600,
       );
+
+  static get bodyLargeBluegray800 => theme.textTheme.bodyLarge!.copyWith(
+        color: appTheme.blueGray800,
+        fontSize: 16.fSize,
+      );
+
+  // Exo text style
+  static get exoIndigo900 => TextStyle(
+        color: appTheme.indigo900,
+        fontSize: 73.fSize,
+        fontWeight: FontWeight.w600,
+      ).exo;
+
+  // Title text style
+
+  static get titleLargeIndigo900 => theme.textTheme.titleLarge!.copyWith(
+        color: appTheme.indigo900,
+      );
+  static get titleLargeOnError => theme.textTheme.titleLarge!.copyWith(
+        color: theme.colorScheme.onError,
+        fontWeight: FontWeight.w700,
+      );
+  static get titleLargeOnInverseSurface => theme.textTheme.titleLarge!.copyWith(
+        color: theme.colorScheme.onInverseSurface,
+        fontWeight: FontWeight.w700,
+      );
+  static get titleLargePrimary => theme.textTheme.titleLarge!.copyWith(
+        color: theme.colorScheme.primary.withOpacity(0.6),
+        fontWeight: FontWeight.w500,
+      );
+
+  static get titleMediumIndigo900 => theme.textTheme.titleMedium!.copyWith(
+        color: appTheme.indigo900,
+        fontSize: 19.fSize,
+        fontWeight: FontWeight.w600,
+      );
+
+  static get titleMediumOnError => theme.textTheme.titleMedium!.copyWith(
+        color: theme.colorScheme.onError,
+      );
+
+  static get titleSmallExoIndigo900 => theme.textTheme.titleSmall!.exo.copyWith(
+        color: appTheme.indigo900,
+        fontSize: 15.fSize,
+        fontWeight: FontWeight.w600,
+      );
+  static get titleSmallExoIndigo900SemiBold =>
+      theme.textTheme.titleSmall!.exo.copyWith(
+        color: appTheme.indigo900,
+        fontWeight: FontWeight.w600,
+      );
+  static get titleSmallPrimaryContainer => theme.textTheme.titleSmall!.copyWith(
+        color: theme.colorScheme.primaryContainer.withOpacity(0.56),
+      );
 }
 
 extension on TextStyle {
@@ -50,7 +106,7 @@ extension on TextStyle {
 
   TextStyle get exo {
     return copyWith(
-      fontFamily: 'Exo',
+      fontFamily: 'ExoRoman',
     );
   }
 }

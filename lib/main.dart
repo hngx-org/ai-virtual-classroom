@@ -1,13 +1,22 @@
+
 import 'package:ai_virtual_classroom/core/global/global.dart';
-import 'package:ai_virtual_classroom/screens/welcome_screen.dart';
+
+
+import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'core/app_exports.dart';
+import 'package:get/get.dart';
 
-void main() async {
+import 'core/utils/initalbinding.dart';
+import 'routes/app_routes.dart';
+
+
+Future<void> main() async {
   await Global.init();
   runApp(const MyApp());
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -18,12 +27,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeHelper().themeData(),
-      title: 'Virtual Classroom',
-      home: const WelcomeScreen(),
+      title: 'AI Virtual classroom',
+      initialBinding: InitialBindings(),
+      initialRoute: AppRoutes.initialRoute,
+      getPages: AppRoutes.pages,
     );
   }
 }

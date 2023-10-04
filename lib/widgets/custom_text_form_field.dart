@@ -1,8 +1,8 @@
-import 'package:ai_virtual_classroom/core/app_exports.dart';
+import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField({
+  const CustomTextFormField({
     Key? key,
     this.alignment,
     this.width,

@@ -43,8 +43,9 @@ dependencies:
   flutter_svg: ^2.0.7
   cached_network_image: ^3.3.0
   go_router: ^11.1.2
-  hng_authentication: ^0.0.3
+  hng_authentication: ^0.1.1
   intl: ^0.18.1
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
