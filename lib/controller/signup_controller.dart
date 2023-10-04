@@ -44,7 +44,7 @@ class SignUpContrroller extends GetxController {
       final name = nameController.text.trim();
       final email = emailController.text.trim();
       final password = passwordController.text.trim();
-      final result = await authRepository.signUp(name, email, password);
+      final result = await authRepository.signUp(email, name, password);
       ProgressDialogUtils.hideProgressDialog();
       if (result != null) {
         // print('Success : ${result.name}');

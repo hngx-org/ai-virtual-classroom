@@ -34,7 +34,7 @@ extension ExtString on String {
 extension ExString on String {
   bool get passwordValidation {
     final passwordIsVaild =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}$');
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!#_\><*~]).{8,}$');
     return passwordIsVaild.hasMatch(this);
   }
 }

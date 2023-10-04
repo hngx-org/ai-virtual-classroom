@@ -1,4 +1,5 @@
 import 'package:ai_virtual_classroom/screens/welcome_screen.dart';
+import 'package:ai_virtual_classroom/themes/custom_button_style.dart';
 import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:get/get.dart';
 
@@ -61,7 +62,8 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
                                     alignment: Alignment.topCenter,
                                     child: Text(
                                       'AI',
-                                      style: CustomTextStyles.exoPrimaryContainer,
+                                      style:
+                                          CustomTextStyles.exoPrimaryContainer,
                                     ),
                                   ),
                                 ],
@@ -98,6 +100,7 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
               ),
               SizedBox(height: 19.v),
               CustomElevatedButton(
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
                 onTap: () => Get.offAll(const WelcomeScreen()),
                 width: 267.h,
                 text: 'Continue',

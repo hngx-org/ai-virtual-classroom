@@ -43,6 +43,7 @@ class WelcomeScreen extends StatelessWidget {
             //SizedBox(height: 40.v),
             const Spacer(),
             CustomElevatedButton(
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
                 text: 'Sign In',
                 onTap: () {
                   FocusScope.of(context).unfocus();

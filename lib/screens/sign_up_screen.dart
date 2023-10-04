@@ -128,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         bottom: 20,
                       ),
                       child: CustomElevatedButton(
+                        buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
                         text: 'Sign Up',
                         // onTap: () => Get.to(() => Dashboard()),
                         onTap: () => signUpController.validate(),
