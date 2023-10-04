@@ -92,35 +92,35 @@ class EssayResultScreenState extends State<EssayResultScreen> {
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 2.h),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 64.h,
-                            vertical: 3.v,
-                          ),
-                          decoration: AppDecoration.outlinePrimary.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder15,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Grade".tr,
-                                style:
-                                    CustomTextStyles.titleLargeOnInverseSurface,
-                              ),
-                              SizedBox(height: 10.v),
-                              Text(
-                                "67.5%".tr,
-                                style: theme.textTheme.displayMedium,
-                              ),
-                              SizedBox(height: 6.v),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.center,
+                      //   child: Container(
+                      //     margin: EdgeInsets.symmetric(horizontal: 2.h),
+                      //     padding: EdgeInsets.symmetric(
+                      //       horizontal: 64.h,
+                      //       vertical: 3.v,
+                      //     ),
+                      //     decoration: AppDecoration.outlinePrimary.copyWith(
+                      //       borderRadius: BorderRadiusStyle.roundedBorder15,
+                      //     ),
+                      //     child: Column(
+                      //       mainAxisSize: MainAxisSize.min,
+                      //       children: [
+                      //         Text(
+                      //           "Grade".tr,
+                      //           style:
+                      //               CustomTextStyles.titleLargeOnInverseSurface,
+                      //         ),
+                      //         SizedBox(height: 10.v),
+                      //         Text(
+                      //           "67.5%".tr,
+                      //           style: theme.textTheme.displayMedium,
+                      //         ),
+                      //         SizedBox(height: 6.v),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       Align(
                         alignment: Alignment.topCenter,
                         child: Padding(

@@ -5,6 +5,7 @@ import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import 'package:ai_virtual_classroom/core/utils/utlis.dart';
 import 'package:ai_virtual_classroom/screens/essay_result_screen/results.dart';
+import 'package:ai_virtual_classroom/screens/payment/payment.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/screens/submit_success/submit_success_screen.dart';
 import 'package:ai_virtual_classroom/themes/app_theme.dart';
@@ -276,6 +277,7 @@ class WidgetDrawe extends StatelessWidget {
             ),
             onTap: () {
               // Handles Payments item tap.
+              Get.to(() => PaymentPage());
             },
           ),
           ListTile(
