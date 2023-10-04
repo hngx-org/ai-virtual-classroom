@@ -185,14 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.8"
-  dotenv:
-    dependency: transitive
-    description:
-      name: dotenv
-      sha256: e169b516bc7b88801919e1c508772bcb8e3d0d1776a43f74ab692c57e741cd8a
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -238,14 +230,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  flutter_dotenv:
-    dependency: transitive
-    description:
-      name: flutter_dotenv
-      sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -325,7 +309,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: c715c4e305e5adbb7c19e46f10f03293b4524f32
+      resolved-ref: "24b8c5a6e55836a7a905c6a0ef6ec710f0c74aef"
       url: "https://github.com/hngx-org/openai-package.git"
     source: git
     version: "1.0.0"

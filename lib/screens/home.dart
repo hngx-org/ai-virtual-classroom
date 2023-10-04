@@ -4,6 +4,7 @@ import 'package:ai_virtual_classroom/controller/logout_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
 import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import 'package:ai_virtual_classroom/core/utils/utlis.dart';
+import 'package:ai_virtual_classroom/screens/essay_result_screen/results.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/screens/submit_success/submit_success_screen.dart';
 import 'package:ai_virtual_classroom/themes/app_theme.dart';
@@ -27,6 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   String _savedName = '';
   String essayResult = '';
+  List<String> myList = [];
 
   @override
   void initState() {
@@ -41,32 +43,35 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  OpenAIRepository openAI = OpenAIRepository();
-
-  Future<void> submitEassy() async {
+  void submitEassy() async {
     print("Here Essay");
-    ProgressDialogUtils.showProgressDialog();
+    //ProgressDialogUtils.showProgressDialog();
     try {
+      OpenAIRepository openAI = OpenAIRepository();
       final essay = homeController.essayController.text.trim();
-      String cookie = await authController.getCookie();
-      String userInput =
-          "Grade this essay from 1 - 10, feedback and personalized learning recommendations. $essay";
+      var cookie = await authController.getCookie();
+      final userInput =
+          "grade the eassy below, give feedback, and personalized learning recommendations $essay";
 
       final aiResponse = await openAI.getChat(userInput, cookie);
-      List<String> history = [
-        "Hi?",
-        "Grade this essay from 1 - 10, feedback and personalized learning recommendations"
-      ];
-      ProgressDialogUtils.hideProgressDialog();
-      final response =
-          await openAI.getChatCompletions(history, userInput, cookie);
+      await authCrtl.saveResult(aiResponse);
+      // ProgressDialogUtils.hideProgressDialog();
+      print("---res $aiResponse");
+      print("---cookie $cookie");
+      print("---essay: $userInput");
 
       setState(() {
         essayResult = aiResponse;
       });
-    } catch (error) {
-      print("Error Submit $error");
+    } catch (e) {
+      print("Error: $e");
+      // ProgressDialogUtils.hideProgressDialog();
     }
+  }
+
+  Future<void> saveData() async {
+    myList.add(essayResult);
+    await authCrtl.saveListToPrefs(myList);
   }
 
   @override
@@ -83,126 +88,7 @@ class _HomePageState extends State<HomePage> {
           style: theme.textTheme.bodyLarge,
         ),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            Container(
-              height: 100,
-              color: const Color(0xFF191D88),
-              alignment: Alignment.center,
-              child: const Text(
-                'AI Virtual Classroom',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.home,
-                color: Color(0xFF364356),
-                size: 24,
-              ),
-              title: const Text(
-                'Home',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF364356),
-                ),
-              ),
-              onTap: () {
-                // Handles Home item tap.
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.payment,
-                color: Color(0xFF364356),
-                size: 24,
-              ),
-              title: const Text(
-                'Payments',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF364356),
-                ),
-              ),
-              onTap: () {
-                // Handles Payments item tap.
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.assignment,
-                color: Color(0xFF364356),
-                size: 24,
-              ),
-              title: const Text(
-                'Essay Results',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF364356),
-                ),
-              ),
-              onTap: () {
-                // Handles Essay Results item tap.
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.notifications,
-                color: Color(0xFF364356),
-                size: 24,
-              ),
-              title: const Text(
-                'Notifications',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF364356),
-                ),
-              ),
-              onTap: () {
-                // Handles Notifications item tap.
-              },
-            ),
-            const Spacer(),
-            CustomElevatedButton(
-                width: 200,
-                margin: const EdgeInsets.only(bottom: 20),
-                text: 'Logout',
-                buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
-                buttonTextStyle: TextStyle(
-                    fontFamily: 'ExoRoman',
-                    color: AppTheme().primaryColor,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20.fSize),
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                  authCrtl.logout();
-                  logoutCtr.logout();
-                  Get.offAll(() => const SignInScreen());
-                }),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.logout,
-            //     color: const Color(0xFF364356),
-            //     size: 24,
-            //   ),
-            //   title: Text(
-            //     'Logout',
-            //     style: TextStyle(
-            //       fontSize: 16,
-            //       color: const Color(0xFF364356),
-            //     ),
-            //   ),
-            //   onTap: () {
-            //     // Handles Logout item tap.
-            //   },
-            // ),
-          ],
-        ),
-      ),
+      drawer: WidgetDrawe(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -236,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Text(
-                          "Hi $_savedName",
+                          "Hi $_savedName".toUpperCase(),
                           style: myTextTheme.bodyMedium?.copyWith(
                             fontSize: 20,
                             color: Colors.black,
@@ -313,15 +199,155 @@ class _HomePageState extends State<HomePage> {
                     buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
                     text: "Submit",
                     margin: EdgeInsets.symmetric(horizontal: 40.h),
-                    onTap: () {
+                    onTap: () async {
                       // homeController.submitEassy();
                       submitEassy();
-                      // Get.to(() => SubmitSuccessScreen(essayResult));
+                      homeController.essayController.clear();
+                      //  await authCrtl.saveResult(essayResult);
+                      // saveData();
+                      Get.to(
+                        () => SubmitSuccessScreen(),
+                        arguments: essayResult,
+                      );
                     }),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class WidgetDrawe extends StatelessWidget {
+  const WidgetDrawe({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final authCrtl = Get.put(AuthController());
+    final logoutCtr = Get.put(LogOut());
+    return Drawer(
+      child: Column(
+        children: [
+          Container(
+            height: 100,
+            color: const Color(0xFF191D88),
+            alignment: Alignment.center,
+            child: const Text(
+              'AI Virtual Classroom',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.home,
+              color: Color(0xFF364356),
+              size: 24,
+            ),
+            title: const Text(
+              'Home',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF364356),
+              ),
+            ),
+            onTap: () {
+              // Handles Home item tap.
+              Get.to(() => HomePage());
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.payment,
+              color: Color(0xFF364356),
+              size: 24,
+            ),
+            title: const Text(
+              'Payments',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF364356),
+              ),
+            ),
+            onTap: () {
+              // Handles Payments item tap.
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.assignment,
+              color: Color(0xFF364356),
+              size: 24,
+            ),
+            title: const Text(
+              'Essay Results',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF364356),
+              ),
+            ),
+            onTap: () {
+              // Handles Essay Results item tap.
+              Get.to(() => Results());
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.notifications,
+              color: Color(0xFF364356),
+              size: 24,
+            ),
+            title: const Text(
+              'Notifications',
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF364356),
+              ),
+            ),
+            onTap: () {
+              // Handles Notifications item tap.
+            },
+          ),
+          const Spacer(),
+          CustomElevatedButton(
+              width: 200,
+              margin: const EdgeInsets.only(bottom: 20),
+              text: 'Logout',
+              buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
+              buttonTextStyle: TextStyle(
+                  fontFamily: 'ExoRoman',
+                  color: AppTheme().primaryColor,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 20.fSize),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                authCrtl.logout();
+                logoutCtr.logout();
+                Get.offAll(() => const SignInScreen());
+              }),
+          // ListTile(
+          //   leading: Icon(
+          //     Icons.logout,
+          //     color: const Color(0xFF364356),
+          //     size: 24,
+          //   ),
+          //   title: Text(
+          //     'Logout',
+          //     style: TextStyle(
+          //       fontSize: 16,
+          //       color: const Color(0xFF364356),
+          //     ),
+          //   ),
+          //   onTap: () {
+          //     // Handles Logout item tap.
+          //   },
+          // ),
+        ],
       ),
     );
   }

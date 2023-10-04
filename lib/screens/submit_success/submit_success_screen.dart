@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
 class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
-  final String result;
-  const SubmitSuccessScreen(this.result, {Key? key})
+  const SubmitSuccessScreen({Key? key})
       : super(
           key: key,
         );
@@ -62,7 +61,10 @@ class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
                   buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
                   buttonTextStyle: CustomTextStyles.titleLargeIndigo900,
                   onTap: () {
-                    Get.to(() => EssayResultScreen(result));
+                    Get.offAll(
+                      () => EssayResultScreen(),
+                      arguments: Get.arguments,
+                    );
                   }),
             ],
           ),
