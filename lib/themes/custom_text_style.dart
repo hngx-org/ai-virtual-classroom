@@ -31,6 +31,12 @@ class CustomTextStyles {
   static get titleMedium18 => theme.textTheme.titleMedium!.copyWith(
         fontSize: 18.fSize,
       );
+  static get titleMediumMontserratIndigo900 =>
+      theme.textTheme.titleMedium!.copyWith(
+        color: appTheme.indigo900,
+        fontSize: 18.fSize,
+        fontWeight: FontWeight.w700,
+      );
   static get titleMediumPrimaryContainer =>
       theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.primaryContainer,

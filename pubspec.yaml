@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  hngx_openai:
+    git:
+      url: https://github.com/hngx-org/openai-package.git
+      ref: main
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -50,6 +54,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+ 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

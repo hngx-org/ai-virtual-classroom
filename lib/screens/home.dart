@@ -2,6 +2,7 @@ import 'package:ai_virtual_classroom/controller/auth_controller.dart';
 import 'package:ai_virtual_classroom/controller/home_controller.dart';
 import 'package:ai_virtual_classroom/controller/logout_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
+import 'package:ai_virtual_classroom/core/utils/progress_dialog_utils.dart';
 import 'package:ai_virtual_classroom/core/utils/utlis.dart';
 import 'package:ai_virtual_classroom/screens/sign_in_screen.dart';
 import 'package:ai_virtual_classroom/screens/submit_success/submit_success_screen.dart';
@@ -9,6 +10,7 @@ import 'package:ai_virtual_classroom/themes/app_theme.dart';
 import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 
 import 'package:flutter/material.dart';
+import 'package:hngx_openai/repository/openai_repository.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   final logoutCtr = Get.put(LogOut());
 
   String _savedName = '';
+  String essayResult = '';
 
   @override
   void initState() {
@@ -38,6 +41,34 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  OpenAIRepository openAI = OpenAIRepository();
+
+  Future<void> submitEassy() async {
+    print("Here Essay");
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      final essay = homeController.essayController.text.trim();
+      String cookie = await authController.getCookie();
+      String userInput =
+          "Grade this essay from 1 - 10, feedback and personalized learning recommendations. $essay";
+
+      final aiResponse = await openAI.getChat(userInput, cookie);
+      List<String> history = [
+        "Hi?",
+        "Grade this essay from 1 - 10, feedback and personalized learning recommendations"
+      ];
+      ProgressDialogUtils.hideProgressDialog();
+      final response =
+          await openAI.getChatCompletions(history, userInput, cookie);
+
+      setState(() {
+        essayResult = aiResponse;
+      });
+    } catch (error) {
+      print("Error Submit $error");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Define your color scheme based on your app's theme
@@ -47,7 +78,10 @@ class _HomePageState extends State<HomePage> {
     final TextTheme myTextTheme = TextThemes.textTheme(currentColorScheme);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Submit Your Essay!"),
+        title: Text(
+          "Submit Your Essay!",
+          style: theme.textTheme.bodyLarge,
+        ),
       ),
       drawer: Drawer(
         child: Column(
@@ -56,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               height: 100,
               color: const Color(0xFF191D88),
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'AI Virtual Classroom',
                 style: TextStyle(
                   color: Colors.white,
@@ -65,16 +99,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.home,
-                color: const Color(0xFF364356),
+                color: Color(0xFF364356),
                 size: 24,
               ),
-              title: Text(
+              title: const Text(
                 'Home',
                 style: TextStyle(
                   fontSize: 16,
-                  color: const Color(0xFF364356),
+                  color: Color(0xFF364356),
                 ),
               ),
               onTap: () {
@@ -82,16 +116,16 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.payment,
-                color: const Color(0xFF364356),
+                color: Color(0xFF364356),
                 size: 24,
               ),
-              title: Text(
+              title: const Text(
                 'Payments',
                 style: TextStyle(
                   fontSize: 16,
-                  color: const Color(0xFF364356),
+                  color: Color(0xFF364356),
                 ),
               ),
               onTap: () {
@@ -99,16 +133,16 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.assignment,
-                color: const Color(0xFF364356),
+                color: Color(0xFF364356),
                 size: 24,
               ),
-              title: Text(
+              title: const Text(
                 'Essay Results',
                 style: TextStyle(
                   fontSize: 16,
-                  color: const Color(0xFF364356),
+                  color: Color(0xFF364356),
                 ),
               ),
               onTap: () {
@@ -116,28 +150,28 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.notifications,
-                color: const Color(0xFF364356),
+                color: Color(0xFF364356),
                 size: 24,
               ),
-              title: Text(
+              title: const Text(
                 'Notifications',
                 style: TextStyle(
                   fontSize: 16,
-                  color: const Color(0xFF364356),
+                  color: Color(0xFF364356),
                 ),
               ),
               onTap: () {
                 // Handles Notifications item tap.
               },
             ),
-            Spacer(),
+            const Spacer(),
             CustomElevatedButton(
                 width: 200,
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 text: 'Logout',
-                buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
+                buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
                 buttonTextStyle: TextStyle(
                     fontFamily: 'ExoRoman',
                     color: AppTheme().primaryColor,
@@ -170,109 +204,122 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.h),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text: 'Good ',
-                                style: theme.textTheme.bodyLarge),
-                            TextSpan(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.h),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Good',
+                                style: myTextTheme.bodyMedium?.copyWith(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              TextSpan(
                                 text: Utils.getTimeOfDay(),
-                                style: theme.textTheme.bodyLarge?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                ))
-                          ],
-                        ),
-                      ),
-                      Text("Hi $_savedName"),
-                    ],
-                  ),
-                  const CircleAvatar(
-                    backgroundColor: Colors.amber,
-                    radius: 20,
-                  )
-                ],
-              ),
-              SizedBox(height: 30.v),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30.h),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Your Teacher has given an essay assignment",
-                        textAlign: TextAlign.center,
-                        style: myTextTheme.bodyMedium?.copyWith(
-                          fontSize: 18.fSize,
-                        ),
-                      ),
-                      SizedBox(height: 30.v),
-                      const CustomTextFormField(
-                        hintText: 'Topic assigned to you?',
-                      ),
-                      SizedBox(height: 30.v),
-                      Container(
-                        width: double.infinity,
-                        height: 300,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                                color: const Color.fromARGB(255, 89, 88, 88))),
-                        child: TextFormField(
-                          controller: homeController.essayController,
-                          minLines: 1,
-                          maxLines: 100,
-                          autocorrect: false,
-                          cursorColor: AppTheme().primaryColor,
-                          autovalidateMode: AutovalidateMode.disabled,
-                          decoration: const InputDecoration(
-                            hintText: 'Your Essay',
-                            hintStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            fillColor: Colors.white,
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: EdgeInsets.all(0),
+                                style: myTextTheme.bodyMedium?.copyWith(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          "Hi $_savedName",
+                          style: myTextTheme.bodyMedium?.copyWith(
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const CircleAvatar(
+                      backgroundColor: Colors.amber,
+                      radius: 20,
+                    )
+                  ],
+                ),
+                SizedBox(height: 30.v),
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30.h),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Your Teacher has given an essay assignment",
+                          textAlign: TextAlign.center,
+                          style: myTextTheme.bodyMedium?.copyWith(
+                            fontSize: 18.fSize,
+                          ),
+                        ),
+                        SizedBox(height: 30.v),
+                        const CustomTextFormField(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Topic assigned to you?',
+                        ),
+                        SizedBox(height: 30.v),
+                        Container(
+                          width: double.infinity,
+                          height: 300,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(
+                                  color:
+                                      const Color.fromARGB(255, 89, 88, 88))),
+                          child: TextFormField(
+                            controller: homeController.essayController,
+                            minLines: 1,
+                            maxLines: 100,
+                            autocorrect: false,
+                            cursorColor: AppTheme().primaryColor,
+                            autovalidateMode: AutovalidateMode.disabled,
+                            decoration: const InputDecoration(
+                              hintText: 'Your Essay',
+                              hintStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              fillColor: Colors.white,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.all(0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const Text("You have 3 free trials left"),
-              SizedBox(height: 20.v),
-              CustomElevatedButton(
-                  text: "Submit",
-                  margin: EdgeInsets.symmetric(horizontal: 40.h),
-                  onTap: () {
-                    homeController.submitEassy();
-                    ;
-                  }),
-              // TextButton(
-              //     onPressed: () {
-              //       authCrtl.logout();
-              //       logoutCtr.logout();
-              //       Get.offAll(() => const SignInScreen());
-              //     },
-              //     child: const Text("Logout"))
-            ],
+                const Text("You have 3 free trials left"),
+                Text(essayResult),
+                SizedBox(height: 20.v),
+                CustomElevatedButton(
+                    buttonStyle: CustomButtonStyles.outlinePrimaryTL123,
+                    text: "Submit",
+                    margin: EdgeInsets.symmetric(horizontal: 40.h),
+                    onTap: () {
+                      // homeController.submitEassy();
+                      submitEassy();
+                      // Get.to(() => SubmitSuccessScreen(essayResult));
+                    }),
+              ],
+            ),
           ),
         ),
       ),

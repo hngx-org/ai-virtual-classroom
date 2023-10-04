@@ -1,5 +1,6 @@
 import 'package:ai_virtual_classroom/controllers/submit_success_controller.dart';
 import 'package:ai_virtual_classroom/core/app_export.dart';
+import 'package:ai_virtual_classroom/screens/essay_result_screen/essay_result_screen.dart';
 
 import 'package:ai_virtual_classroom/widgets/app_custom_buttons.dart';
 
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
 class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
-  const SubmitSuccessScreen({Key? key})
+  final String result;
+  const SubmitSuccessScreen(this.result, {Key? key})
       : super(
           key: key,
         );
@@ -57,10 +59,10 @@ class SubmitSuccessScreen extends GetWidget<SubmitSuccessController> {
               CustomElevatedButton(
                   text: "Check Result".tr,
                   margin: EdgeInsets.fromLTRB(28.h, 27.v, 30.h, 5.v),
-                  buttonStyle: CustomButtonStyles.outlinePrimaryTL12,
+                  buttonStyle: CustomButtonStyles.outlinePrimaryTL122,
                   buttonTextStyle: CustomTextStyles.titleLargeIndigo900,
                   onTap: () {
-                    ;
+                    Get.to(() => EssayResultScreen(result));
                   }),
             ],
           ),

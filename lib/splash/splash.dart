@@ -1,3 +1,4 @@
+import 'package:ai_virtual_classroom/themes/app_theme.dart';
 import 'package:ai_virtual_classroom/themes/theme_helper.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class SplashScreen extends GetWidget<SplashController> {
     MediaQuery.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.primaryContainer,
+      backgroundColor: AppTheme().primaryColor,
       body: SafeArea(
         child: SizedBox(
           height: 785,

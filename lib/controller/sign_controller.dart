@@ -48,6 +48,7 @@ class SignInController extends GetxController {
         print(unitLeft);
         print('Success Result: ${result.cookie}');
         print('Success Result Email: ${data.email}');
+        print('Success Result Email: ${data.credits}');
         isLoggedin.value = true;
         await authCrtl.saveName('${result.name}');
         await authCrtl.saveEmail('${result.email}');

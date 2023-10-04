@@ -5,9 +5,11 @@ import 'package:ai_virtual_classroom/widgets/app_bar/appbar_image_1.dart';
 import 'package:ai_virtual_classroom/widgets/app_bar/appbar_title.dart';
 import 'package:ai_virtual_classroom/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+
 // ignore_for_file: must_be_immutable
 class EssayResultScreen extends GetWidget<EssayResultController> {
-  const EssayResultScreen({Key? key})
+  final String response;
+  const EssayResultScreen(this.response, {Key? key})
       : super(
           key: key,
         );
